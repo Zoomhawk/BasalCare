@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function medicalDetails(props) {
+function MedicalDetails(props) {
   const [medicalDetails, setMedicalDetails] = useState([]);
   useEffect(() => {
     if (props.data && props.data.treatmentDetails.length) {
@@ -77,7 +77,7 @@ function medicalDetails(props) {
   );
 }
 
-export default medicalDetails;
+export default MedicalDetails;
 
 export async function getStaticProps(context) {
   try {

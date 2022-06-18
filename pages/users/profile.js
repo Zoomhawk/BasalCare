@@ -61,34 +61,34 @@ function Profile() {
         <div className="col-span-5 grid grid-cols-2 w-full shadow-lg rounded overflow-hidden">
           <div className="pl-6 py-6 mt-2">
             <div className="grid grid-cols-1">
-              <div className="px-2 py-3 border-b-2">Full Name</div>
-              <div className="px-2 py-3 border-b-2">Date of Birth</div>
-              <div className="px-2 py-3 border-b-2">Blood Group</div>
-              <div className="px-2 py-3 border-b-2">Email</div>
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">Full Name</div>
+              <div className="px-2 py-3 border-b-2 h-12">Date of Birth</div>
+              <div className="px-2 py-3 border-b-2 h-12">Blood Group</div>
+              <div className="px-2 py-3 border-b-2 h-12">Email</div>
+              <div className="px-2 py-3 border-b-2 h-12">
                 Emergency Contact Number
               </div>
-              <div className="px-2 py-3 border-b-2">Gender</div>
+              <div className="px-2 py-3 border-b-2 h-12">Gender</div>
             </div>
           </div>
           <div className="pr-6 py-6 mt-2">
             <div className="grid grid-cols-1">
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">
                 {currentUser && currentUser.displayName}
               </div>
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">
                 {userDetails && userDetails.DOB.substring(0, 10)}
               </div>
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">
                 {userDetails && userDetails.bloodGroup}
               </div>
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">
                 {userDetails && userDetails.email}
               </div>
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">
                 +91 {userDetails && userDetails.emergencyContact}
               </div>
-              <div className="px-2 py-3 border-b-2">
+              <div className="px-2 py-3 border-b-2 h-12">
                 {userDetails && userDetails.gender}
               </div>
             </div>

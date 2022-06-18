@@ -3,7 +3,7 @@ import axios from "axios";
 import BasicDetails from "../../components/User/BasicDetails";
 import { useRouter } from "next/router";
 
-function patient(props) {
+function Patient(props) {
   const [userDetails, setUserDetails] = useState("");
   const [userTreatments, setUserTreatments] = useState("");
   const router = useRouter();
@@ -69,13 +69,15 @@ function patient(props) {
           </div>
         </div>
       ) : (
-        ""
+        <div className="h-full w-full">
+          <img src="error_page.svg" />
+        </div>
       )}
     </div>
   );
 }
 
-export default patient;
+export default Patient;
 
 export async function getStaticProps(context) {
   try {
