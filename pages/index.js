@@ -40,7 +40,9 @@ function index() {
         <div className="flex justify-around w-full">
           <div>
             <form className="flex items-center flex-col">
-              <label for="registerId" className="p-3">Enter Register Id : </label>
+              <label forHTML="registerId" className="p-3">
+                Enter Register Id :{" "}
+              </label>
               <input
                 type="text"
                 id="registerId"

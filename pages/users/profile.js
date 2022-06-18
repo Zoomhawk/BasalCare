@@ -1,37 +1,35 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useAuth } from "../../components/context/AuthContext";
 import { protectedRoute } from "../../components/context/ProtectedRoute";
-import {Button} from '@chakra-ui/react';
-function profile() {
+import { Button } from "@chakra-ui/react";
+function Profile() {
   const { currentUser } = useAuth();
   const [userDetails, setUserDetails] = useState();
-  async function getReminder(e)
-  {
-    let message= 'Medicine: Paracetamol\n Shift: Afternoon \n Time: 5:30pm \n Total Pills: 3 ';
-    let email = currentUser.email
-    let emailData =
-    {
+  async function getReminder(e) {
+    let message =
+      "Medicine: Paracetamol\n Shift: Afternoon \n Time: 5:30pm \n Total Pills: 3 ";
+    let email = currentUser.email;
+    let emailData = {
       email,
-      message
-    }
-    await fetch('/api/sendEmail', {
-      method: 'POST',
+      message,
+    };
+    await fetch("/api/sendEmail", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(emailData)
+      body: JSON.stringify(emailData),
     }).then((res) => {
-      console.log('Response received')
+      console.log("Response received");
       if (res.status === 200) {
-        console.log('Response succeeded!')
-
+        console.log("Response succeeded!");
       }
-    })
+    });
   }
 
-useEffect(() => {
+  useEffect(() => {
     async function getUserDetails() {
       const response = await axios.post("/api/getUserDetails", {
         email: currentUser.email,
@@ -109,64 +107,70 @@ useEffect(() => {
           </div>
         </div>
       </div>
-    <div className="grid grid-cols-2">
-    <div className="bg-sky-500 p-6 m-6 rounded text-slate-50 h-64">
-    <div className="text-center m-2">
-      <strong>Appointment details:</strong>
-    </div>
-    <div className="grid grid-cols-2">
-      <div>
-        <ul>
-          <li>Appointment id : </li>
-          <li>Name : </li>
-          <li>Appointment Date : </li>
-          <li>Timing : </li>
-          <li>Age : </li>
-          <li>Contact No. : </li>
-        </ul>
+      <div className="grid grid-cols-2">
+        <div className="bg-sky-500 p-6 m-6 rounded text-slate-50 h-64">
+          <div className="text-center m-2">
+            <strong>Appointment details:</strong>
+          </div>
+          <div className="grid grid-cols-2">
+            <div>
+              <ul>
+                <li>Appointment id : </li>
+                <li>Name : </li>
+                <li>Appointment Date : </li>
+                <li>Timing : </li>
+                <li>Age : </li>
+                <li>Contact No. : </li>
+              </ul>
+            </div>
+            <div>
+              <ul>
+                <li>2227DDG</li>
+                <li>Sushant </li>
+                <li>12th-july</li>
+                <li>6:00pm</li>
+                <li>50</li>
+                <li>3949947dd</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className=" bg-sky-500 p-6 m-6 rounded text-slate-50 h-64">
+          <div className="text-center my-2 ">
+            <strong>Reminder</strong>
+          </div>
+          <div className="grid grid-cols-2">
+            <div>
+              <ul>
+                <li>Medicine name : </li>
+                <li>Shift : </li>
+                <li>Timing : </li>
+                <li>Total pills : </li>
+              </ul>
+            </div>
+            <div>
+              <ul>
+                <li>Paracetamol</li>
+                <li>Afternoon </li>
+                <li>5:30pm</li>
+                <li>3</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex m-2 p-2 justify-center">
+            <Button
+              onClick={(e) => {
+                getReminder(e);
+              }}
+              colorScheme="blue"
+            >
+              Set Daily Reminder
+            </Button>
+          </div>
+        </div>
       </div>
-      <div>
-        <ul>
-          <li>2227DDG</li>
-          <li>Sushant </li>
-          <li>12th-july</li>
-          <li>6:00pm</li>
-          <li>50</li>
-          <li>3949947dd</li>
-        </ul>
-      </div>
     </div>
-  </div>
-  <div className=" bg-sky-500 p-6 m-6 rounded text-slate-50 h-64">
-    <div className="text-center my-2 ">
-      <strong>Reminder</strong>
-    </div>
-    <div className="grid grid-cols-2">
-      <div>
-        <ul>
-          <li>Medicine name : </li>
-          <li>Shift : </li>
-          <li>Timing : </li>
-          <li>Total pills : </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-
-          <li>Paracetamol</li>
-          <li>Afternoon </li>
-          <li>5:30pm</li>
-          <li>3</li>
-        </ul>
-      </div>
-    </div>
-    <div className="flex m-2 p-2 justify-center">
-      <Button onClick={(e)=>{getReminder(e)}} colorScheme="blue">Set Daily Reminder</Button>
-    </div>
-  </div>
-  </div>
-  </div>
   );
 }
 
-export default protectedRoute(profile);
+export default protectedRoute(Profile);
