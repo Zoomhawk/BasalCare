@@ -23,16 +23,17 @@ function profile() {
         <div className="p-6 flex col-span-2 justify-center items-center">
           <div className="w-4/5 shadow-lg rounded overflow-hidden">
             <img
-              src="https://pbs.twimg.com/media/FSvrIgAWAAQwIGi?format=jpg&name=small"
+              // src="https://pbs.twimg.com/media/FSvrIgAWAAQwIGi?format=jpg&name=small"
+              src={currentUser.photoURL}
               alt="User Image"
-              className="rounded-md"
+              className="rounded-md w-full h-full"
             />
             <div className="p-5">
               <h2 className="font-bold text-center text-2xl mb-2">
                 {currentUser && currentUser.displayName}
               </h2>
               <h5 className="text-center text-lg">
-                {userDetails && userDetails.contact}
+                Id : {userDetails && userDetails.patientId}
               </h5>
             </div>
           </div>
@@ -56,7 +57,7 @@ function profile() {
                 {currentUser && currentUser.displayName}
               </div>
               <div className="px-2 py-3 border-b-2">
-                {userDetails && userDetails.DOB}
+                {userDetails && userDetails.DOB.substring(0, 10)}
               </div>
               <div className="px-2 py-3 border-b-2">
                 {userDetails && userDetails.bloodGroup}
@@ -65,7 +66,7 @@ function profile() {
                 {userDetails && userDetails.email}
               </div>
               <div className="px-2 py-3 border-b-2">
-                {userDetails && userDetails.emergencyContact}
+                +91 {userDetails && userDetails.emergencyContact}
               </div>
               <div className="px-2 py-3 border-b-2">
                 {userDetails && userDetails.gender}
