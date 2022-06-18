@@ -12,8 +12,7 @@ function index() {
           <div>
             Frank Russell, 2nd Earl Russell (1865-1931), was a British nobleman,
             barrister and politician, the older brother of the philosopher
-            Bertrand Russell. In his youth, he enjoyed four happy years at
-            Win
+            Bertrand Russell. In his youth, he enjoyed four happy years at Win
           </div>
         </div>
       </div>
@@ -32,6 +31,26 @@ function index() {
         </div>
         <div className="w-2/5">
           <img src="home2.svg"></img>
+        </div>
+      </div>
+      <div className="bg-blue-100 m-6 p-4 flex items-center justify-center flex-col rounded w-1/2 mx-auto h-76">
+        <div className="text-2xl text-blue-400 m-5">
+          Get all your health records in a single go
+        </div>
+        <div className="flex justify-around w-full">
+          <div>
+            <form className="flex items-center flex-col">
+              <label for="registerId" className="p-3">Enter Register Id : </label>
+              <input
+                type="text"
+                id="registerId"
+                className="p-2 rounded focus:outline-none focus:ring focus:border-blue-500"
+              ></input>
+            </form>
+          </div>
+          <div>
+            <img src="register.svg" className="h-44"></img>
+          </div>
         </div>
       </div>
     </div>

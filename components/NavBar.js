@@ -14,10 +14,10 @@ function NavBar() {
     }
   };
   return (
-    <div className="bg-blue-50 h-16 grid grid-cols-2">
+    <div className="bg-blue-50 h-24 grid grid-cols-2">
       <Link href="/">
-        <div className="p-2 pl-8">
-          <img src="/logo.png" className="h-12 w-24" />
+        <div className="p-2 pl-8 flex items-center">
+          <img src="/logo.png" className=" w-28" />
         </div>
       </Link>
       <div className="flex justify-end items-center pr-20">
