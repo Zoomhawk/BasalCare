@@ -15,7 +15,7 @@ function profile() {
       email,
       message
     }
-    fetch('/api/sendEmail', {
+    await fetch('/api/sendEmail', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',

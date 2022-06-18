@@ -1,5 +1,11 @@
 export default async function sendEmail(req,res)
-{   let nodemailer= require('nodemailer')
+{   let nodemailer= require('nodemailer');
+    let cron = require('node-cron');
+    console.log('Idhar');
+    cron.schedule('*/09 02,05 19-20 * 0',()=>{sendEmailFunction();});
+    
+    async function sendEmailFunction()
+    {
     let transporter = await nodemailer.createTransport({
     port:465,
     host:'smtp.gmail.com',
@@ -26,4 +32,5 @@ export default async function sendEmail(req,res)
         console.log(info)
   });
   res.json('Success');
+}
 }
