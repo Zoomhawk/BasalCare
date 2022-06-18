@@ -7,7 +7,7 @@ export function protectedRoute(Component) {
     const route = useRouter();
 
     if (!currentUser) {
-      route.replace("/user/login");
+      route.replace("/");
       return (
         <div className="w-full h-full flex justify-center items-center">
           Loading ...

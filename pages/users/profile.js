@@ -1,10 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../components/context/AuthContext";
+import { protectedRoute } from "../../components/context/ProtectedRoute";
 
 function profile() {
+  const { currentUser } = useAuth();
+  const [userDetails, setUserDetails] = useState();
+
+  useEffect(() => {
+    async function getUserDetails() {
+      const response = await axios.post("/api/getUserDetails", {
+        email: currentUser.email,
+      });
+      if (response.data.user) return;
+      setUserDetails(response.data.userDetails[0]);
+    }
+    getUserDetails();
+  }, []);
   return (
     <div>
-      <div className="grid grid-cols-3 gap-6 content-evenly">
-        <div className="p-6 flex justify-center items-center">
+      <div className="grid grid-cols-7 gap-6 content-evenly">
+        <div className="p-6 flex col-span-2 justify-center items-center">
           <div className="w-4/5 shadow-lg rounded overflow-hidden">
             <img
               src="https://pbs.twimg.com/media/FSvrIgAWAAQwIGi?format=jpg&name=small"
@@ -12,19 +28,48 @@ function profile() {
               className="rounded-md"
             />
             <div className="p-5">
-              <h2 className="font-bold text-center text-2xl mb-2">Name</h2>
-              <h5 className="text-center text-lg">Age</h5>
+              <h2 className="font-bold text-center text-2xl mb-2">
+                {currentUser && currentUser.displayName}
+              </h2>
+              <h5 className="text-center text-lg">
+                {userDetails && userDetails.contact}
+              </h5>
             </div>
           </div>
         </div>
-        <div className="col-span-2 p-6 mt-2 mr-10">
-          <div className="w-full shadow-lg rounded overflow-hidden">
-            <div className="grid grid-cols-1 divide-y">
-              <div className="px-2 py-5">Full Name</div>
-              <div className="px-2 py-5">Date of Birth</div>
-              <div className="px-2 py-5">Blood Group</div>
-              <div className="px-2 py-5">Contact Number</div>
-              <div className="px-2 py-5">Emergency Contact Number</div>
+        <div className="col-span-5 grid grid-cols-2 w-full shadow-lg rounded overflow-hidden">
+          <div className="pl-6 py-6 mt-2">
+            <div className="grid grid-cols-1">
+              <div className="px-2 py-3 border-b-2">Full Name</div>
+              <div className="px-2 py-3 border-b-2">Date of Birth</div>
+              <div className="px-2 py-3 border-b-2">Blood Group</div>
+              <div className="px-2 py-3 border-b-2">Email</div>
+              <div className="px-2 py-3 border-b-2">
+                Emergency Contact Number
+              </div>
+              <div className="px-2 py-3 border-b-2">Gender</div>
+            </div>
+          </div>
+          <div className="pr-6 py-6 mt-2">
+            <div className="grid grid-cols-1">
+              <div className="px-2 py-3 border-b-2">
+                {currentUser && currentUser.displayName}
+              </div>
+              <div className="px-2 py-3 border-b-2">
+                {userDetails && userDetails.DOB}
+              </div>
+              <div className="px-2 py-3 border-b-2">
+                {userDetails && userDetails.bloodGroup}
+              </div>
+              <div className="px-2 py-3 border-b-2">
+                {userDetails && userDetails.email}
+              </div>
+              <div className="px-2 py-3 border-b-2">
+                {userDetails && userDetails.emergencyContact}
+              </div>
+              <div className="px-2 py-3 border-b-2">
+                {userDetails && userDetails.gender}
+              </div>
             </div>
           </div>
         </div>
@@ -45,4 +90,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default protectedRoute(profile);
