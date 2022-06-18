@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../components/context/AuthContext";
 import { protectedRoute } from "../../components/context/ProtectedRoute";
-import { Button } from "@chakra-ui/react";
 function Profile() {
   const { currentUser } = useAuth();
   const [userDetails, setUserDetails] = useState();
@@ -45,7 +44,8 @@ function Profile() {
         <div className="p-6 flex col-span-2 justify-center items-center">
           <div className="w-4/5 shadow-lg rounded overflow-hidden">
             <img
-              // src="https://pbs.twimg.com/media/FSvrIgAWAAQwIGi?format=jpg&name=small"             alt="User Image"
+              alt="User Image"
+              src={currentUser.photoURL}
               className="rounded-md w-full h-full"
             />
             <div className="p-5">
@@ -97,18 +97,8 @@ function Profile() {
       </div>
       <br />
       <br />
-      <div className="flex flex-col px-20">
-        <div className="justfiy-center px-20 items-center shadow-lg rounded overflow-hidden">
-          <h2 className="text-center text-3xl">Medications</h2>
-          <div className="grid grid-cols-1 divide-y">
-            <div className="px-2 py-5">A</div>
-            <div className="px-2 py-5">B</div>
-            <div className="px-2 py-5">C</div>
-          </div>
-        </div>
-      </div>
       <div className="grid grid-cols-2">
-        <div className="bg-sky-500 p-6 m-6 rounded text-slate-50 h-64">
+        <div className="bg-sky-100 p-6 m-6 rounded-lg text-gray-600 h-64">
           <div className="text-center m-2">
             <strong>Appointment details:</strong>
           </div>
@@ -135,7 +125,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className=" bg-sky-500 p-6 m-6 rounded text-slate-50 h-64">
+        <div className=" bg-sky-100 p-6 m-6 rounded-lg text-gray-600 h-64">
           <div className="text-center my-2 ">
             <strong>Reminder</strong>
           </div>
@@ -158,14 +148,24 @@ function Profile() {
             </div>
           </div>
           <div className="flex m-2 p-2 justify-center">
-            <Button
+            <button
+              className="h-12 p-2 rounded-lg text-gray-800 w-48 border-2 bg-blue-300 hover:bg-blue-400 hover:text-gray-800"
               onClick={(e) => {
                 getReminder(e);
               }}
-              colorScheme="blue"
             >
               Set Daily Reminder
-            </Button>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col px-20 my-7">
+        <div className="justfiy-center px-20 items-center shadow-lg rounded overflow-hidden">
+          <h2 className="text-center text-3xl">Medications</h2>
+          <div className="grid grid-cols-1 divide-y">
+            <div className="px-2 py-5">A</div>
+            <div className="px-2 py-5">B</div>
+            <div className="px-2 py-5">C</div>
           </div>
         </div>
       </div>
