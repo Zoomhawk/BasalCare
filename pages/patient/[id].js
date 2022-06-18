@@ -135,7 +135,7 @@ export default patient;
 export async function getStaticProps(context) {
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/getUserDetails",
+      "http://localhost:3001/api/getUserDetails",
       {
         email: "invalid",
         id: context.params.id,
