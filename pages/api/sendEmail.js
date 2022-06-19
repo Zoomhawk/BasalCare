@@ -1,9 +1,8 @@
-// Code snippet from https://stackoverflow.com/questions/69565428/want-to-schedule-mail-on-particular-time-interval-to-n-number-of-people-using-no
-
 export default async function sendEmail(req, res) {
   let nodemailer = require("nodemailer");
   let cron = require("node-cron");
   let time = req.body[1][2];
+  console.log(time);
   if (time.includes("pm")) {
     time = Number(time.substring(0, 1));
 
@@ -11,6 +10,7 @@ export default async function sendEmail(req, res) {
   } else time = Number(time.substring(0, 1));
   const today = new Date();
   let date = Number(String(today.getDate()).padStart(2, "0"));
+  console.log(`30 ${time - 1} ${date}-${date + 7}  * 0,1,2,3,4,5,6`);
   cron.schedule(`30 ${time - 1} ${date}-${date + 7}  * 0,1,2,3,4,5,6`, () => {
     sendEmailFunction();
   });

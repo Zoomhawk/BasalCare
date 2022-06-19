@@ -1,6 +1,5 @@
 import clientPromise from "../../mongodb.config";
 
-// Code snippet cited from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 export default async function UserDetails(req, res) {
   if (req.method === "POST") {
     const client = await clientPromise;
@@ -9,6 +8,7 @@ export default async function UserDetails(req, res) {
       .collection("hospital")
       .find({ Email: req.body.id })
       .toArray();
+    console.log(treatmentDetails);
     if (treatmentDetails.length) {
       res.json({ user: true });
     } else {

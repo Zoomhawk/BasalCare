@@ -142,7 +142,7 @@ export async function getStaticProps(context) {
       props: { data: data, treatmentDetails: userTreatments },
     };
   } catch (e) {
-
+    console.log(e);
     return {
       props: { message: "failed" },
     };
