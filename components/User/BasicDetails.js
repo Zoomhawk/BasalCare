@@ -7,7 +7,9 @@ function BasicDetails(props) {
       <div className="flex justify-center">
         <div className="flex flex-col mt-10">
           <div className="content-center m-1">
-            <QrCode value={props.id} />
+            <QrCode
+              value={`https://basal-care.vercel.app/patient/${props.id}`}
+            />
           </div>
           <div className="grid grid-cols-2 place-content-start place-items-end text-blue-700 mt-7">
             <div>

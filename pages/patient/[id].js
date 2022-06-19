@@ -29,8 +29,8 @@ function Patient(props) {
   return (
     <div className="bg-gray-100">
       {userDetails ? (
-        <div className="flex">
-          <div className="w-1/4 border-solid mx-1 ">
+        <div className="md:flex md:flex-row flex-col ">
+          <div className="md:w-1/4 w-full border-solid mx-1 ">
             <BasicDetails
               name={userDetails.name}
               dob={userDetails.DOB.substring(0, 10)}
@@ -43,7 +43,7 @@ function Patient(props) {
             />
           </div>
           {isHospital ? (
-            <div className="grid w-3/4 border-solid gap-2">
+            <div className="grid md:w-3/4 w-full border-solid gap-2">
               <div className="grid grid-rows-3 gap-2">
                 <div className="row-span-3 col-span-2 border-solid overflow-y-auto h-128">
                   <div className="p-4 pl-8 text-[#023E8A] text-2xl">
@@ -81,8 +81,8 @@ function Patient(props) {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center ml-96">
-              <div className="mb-10 text-lg">
+            <div className="flex flex-col justify-center items-center lg:ml-96 md:ml-64 ml-0">
+              <div className="md:mb-8 mb-2 md:mt-0 mt-10 text-lg">
                 Login with Hospital Id to view full details
               </div>
               <img

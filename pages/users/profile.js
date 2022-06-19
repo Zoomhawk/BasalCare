@@ -5,7 +5,8 @@ import { protectedRoute } from "../../components/context/ProtectedRoute";
 function Profile() {
   const { currentUser } = useAuth();
   const [userDetails, setUserDetails] = useState();
-  async function getReminder(e) {
+  console.log(userDetails);
+  async function getReminder() {
     let message =
       "Medicine: Paracetamol\n Shift: Afternoon \n Time: 5:30pm \n Total Pills: 3 ";
     let email = currentUser.email;
@@ -13,19 +14,21 @@ function Profile() {
       email,
       message,
     };
-    await fetch("/api/sendEmail", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(emailData),
-    }).then((res) => {
-      console.log("Response received");
-      if (res.status === 200) {
-        console.log("Response succeeded!");
-      }
-    });
+    for (let i = 0; i < userDetails.medicine.length; i++) {
+      await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify([emailData, userDetails.medicine[i]]),
+      }).then((res) => {
+        console.log("Response received");
+        if (res.status === 200) {
+          console.log("Response succeeded!");
+        }
+      });
+    }
   }
 
   useEffect(() => {
@@ -91,82 +94,78 @@ function Profile() {
               <div className="px-2 py-3 border-b-2 h-12">
                 {userDetails && userDetails.gender}
               </div>
+              <div className="flex m-2 p-2 justify-end items-center">
+                <button
+                  className="h-12 p-2 rounded-lg text-gray-800 w-48 border-2 bg-blue-300 hover:bg-blue-400 hover:text-gray-800"
+                  onClick={(e) => {
+                    getReminder();
+                  }}
+                >
+                  Set Daily Reminder
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <br />
       <br />
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 mx-28">
         <div className="bg-sky-100 p-6 m-6 rounded-lg text-gray-600 h-64">
           <div className="text-center m-2">
-            <strong>Appointment details:</strong>
+            <strong className="text-2xl">Appointment details:</strong>
           </div>
-          <div className="grid grid-cols-2">
-            <div>
-              <ul>
-                <li>Appointment id : </li>
-                <li>Name : </li>
-                <li>Appointment Date : </li>
-                <li>Timing : </li>
-                <li>Age : </li>
-                <li>Contact No. : </li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>2227DDG</li>
-                <li>Sushant </li>
-                <li>12th-july</li>
-                <li>6:00pm</li>
-                <li>50</li>
-                <li>3949947dd</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className=" bg-sky-100 p-6 m-6 rounded-lg text-gray-600 h-64">
-          <div className="text-center my-2 ">
-            <strong>Reminder</strong>
-          </div>
-          <div className="grid grid-cols-2">
-            <div>
-              <ul>
-                <li>Medicine name : </li>
-                <li>Shift : </li>
-                <li>Timing : </li>
-                <li>Total pills : </li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>Paracetamol</li>
-                <li>Afternoon </li>
-                <li>5:30pm</li>
-                <li>3</li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex m-2 p-2 justify-center">
-            <button
-              className="h-12 p-2 rounded-lg text-gray-800 w-48 border-2 bg-blue-300 hover:bg-blue-400 hover:text-gray-800"
-              onClick={(e) => {
-                getReminder(e);
-              }}
-            >
-              Set Daily Reminder
-            </button>
-          </div>
+          {userDetails.appointments &&
+            userDetails.appointments.map((app) => {
+              return (
+                <div className="grid px-20 grid-cols-2 border-b-2 pb-3 text-lg ">
+                  <div>
+                    <ul>
+                      <li>Appointment id : </li>
+                      <li>Doctor Name : </li>
+                      <li>Appointment Date : </li>
+                      <li>Timing : </li>
+                      <li>Contact No. : </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>{app.id}</li>
+                      <li>{app.name} </li>
+                      <li>{app.date.substring(0, 10)}</li>
+                      <li>{app.time}</li>
+                      <li>{app.contact}</li>
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
-      <div className="flex flex-col px-20 my-7">
-        <div className="justfiy-center px-20 items-center shadow-lg rounded overflow-hidden">
-          <h2 className="text-center text-3xl">Medications</h2>
-          <div className="grid grid-cols-1 divide-y">
-            <div className="px-2 py-5">A</div>
-            <div className="px-2 py-5">B</div>
-            <div className="px-2 py-5">C</div>
-          </div>
+      <div className="flex flex-col my-7 mx-32">
+        <div className="justfiy-center px-20 items-center shadow-lg bg-sky-50 rounded-lg overflow-hidden">
+          <h2 className="text-center text-3xl mt-3">Medications</h2>
+          {userDetails.medicine &&
+            userDetails.medicine.map((medicine) => {
+              return (
+                <div className="grid grid-cols-2 text-lg p-6 border-b-2">
+                  <div>
+                    <ul>
+                      <li>Medication Name: </li>
+                      <li>Days of Medication : </li>
+                      <li>Time: </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>{medicine[0]}</li>
+                      <li>{medicine[1]} </li>
+                      <li>{medicine[2]}</li>
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

@@ -43,11 +43,11 @@ function Register() {
       <Head>
         <title>Register</title>
       </Head>
-      <div className="grid grid-cols-2 h-3/4 w-2/3 rounded-2xl mt-10 mx-auto bg-white pt-10">
-        <div className="text-4xl font-bold pb-10 col-span-2 flex justify-center items-center">
+      <div className="grid grid-cols-2 md:h-3/4 h-full md:w-2/3 w-11/12 rounded-2xl mt-10 mx-auto bg-white pt-10">
+        <div className="md:text-4xl text-xl font-bold pb-10 col-span-2 flex justify-center items-center">
           Registration for Hospitals
         </div>
-        <div className="pl-36">
+        <div className="lg:pl-36 md:pl-20 pl-2 ml-6 md:col-span-1 col-span-2">
           <div className="border-b-2 w-72 pb-2">
             <i className="fas fa-user fa-sm"></i>
             <input
@@ -102,12 +102,12 @@ function Register() {
             />
           </div>
           {passMatch && (
-            <div className="text-red-500 text-sm pt-1">
+            <div className="text-red-500 text-sm pt-1 md:pl-0 pl-3">
               Password doesn&apos;t match
             </div>
           )}
         </div>
-        <div className="pr-36">
+        <div className="lg:pr-36 md:pr-20 pl-2 ml-6  md:col-span-1 col-span-2">
           <div className="border-b-2 w-72 pb-2">
             <i className="fas fa-user fa-sm"></i>
             <input
@@ -166,7 +166,7 @@ function Register() {
         <div className="w-screen">
           {err && <div className="text-red-500 text-sm pt-1">{err}</div>}
           <button
-            className="bg-blue-400 text-white h-30 w-6/12 ml-28 mt-7 p-3 rounded-lg cursor-pointer hover:bg-blue-600"
+            className="bg-blue-400 text-white md:h-30 h-10 md:w-6/12 w-3/5 md:ml-28 ml-14 md:mt-7 mt-3 md:p-3 p-1 mb-10 rounded-lg cursor-pointer hover:bg-blue-600"
             disabled={hospitalPass !== hospitalPass2}
             onClick={() => {
               const validateEmail = (hospitalEmail) => {

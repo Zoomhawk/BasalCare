@@ -15,6 +15,8 @@ function MedicalDetails(props) {
       if (!response.data.user) {
         router.push("/");
       }
+    } else {
+      router.push("/");
     }
   };
   useEffect(() => {
