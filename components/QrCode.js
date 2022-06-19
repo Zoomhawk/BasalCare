@@ -9,3 +9,4 @@ function QrCode(props) {
 }
 
 export default QrCode;
+

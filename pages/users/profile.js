@@ -1,3 +1,4 @@
+// Design of template inspired by https://www.bootdey.com/snippets/view/profile-with-data-and-skills
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../components/context/AuthContext";
@@ -5,7 +6,6 @@ import { protectedRoute } from "../../components/context/ProtectedRoute";
 function Profile() {
   const { currentUser } = useAuth();
   const [userDetails, setUserDetails] = useState();
-  console.log(userDetails);
   async function getReminder() {
     let message =
       "Medicine: Paracetamol\n Shift: Afternoon \n Time: 5:30pm \n Total Pills: 3 ";
@@ -115,7 +115,7 @@ function Profile() {
           <div className="text-center m-2">
             <strong className="text-2xl">Appointment details:</strong>
           </div>
-          {userDetails.appointments &&
+          {userDetails && userDetails.appointments &&
             userDetails.appointments.map((app) => {
               return (
                 <div
@@ -148,7 +148,7 @@ function Profile() {
       <div className="flex flex-col my-7 mx-32">
         <div className="justfiy-center px-20 items-center shadow-lg bg-sky-50 rounded-lg overflow-hidden">
           <h2 className="text-center text-3xl mt-3">Medications</h2>
-          {userDetails.medicine &&
+          {userDetails && userDetails.medicine &&
             userDetails.medicine.map((medicine) => {
               return (
                 <div
