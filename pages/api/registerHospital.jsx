@@ -1,6 +1,5 @@
 import clientPromise from "../../mongodb.config";
 
-// Code snippet cited from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 export default async function registerHospital(req, res) {
   if (req.method === "POST") {
     const client = await clientPromise;
