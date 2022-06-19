@@ -3,6 +3,7 @@ import axios from "axios";
 import BasicDetails from "../../components/User/BasicDetails";
 import { useRouter } from "next/router";
 import { useAuth } from "../../components/context/AuthContext";
+import Head from "next/head";
 
 function Patient(props) {
   const [userDetails, setUserDetails] = useState("");
@@ -28,6 +29,7 @@ function Patient(props) {
 
   return (
     <div className="bg-gray-100">
+      <Head>Patient</Head>
       {userDetails ? (
         <div className="md:flex md:flex-row flex-col ">
           <div className="md:w-1/4 w-full border-solid mx-1 ">

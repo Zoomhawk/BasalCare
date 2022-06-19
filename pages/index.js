@@ -7,6 +7,7 @@ function Home() {
 
   return (
     <div>
+      <Head>Home</Head>
       <div className="p-8 flex md:flex-row flex-col">
         <div className="md:w-2/5 w-full flex justify-center items-center">
           <img src="card.svg" width={370}></img>

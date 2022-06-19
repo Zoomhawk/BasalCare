@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../components/context/AuthContext";
 import { protectedRoute } from "../../components/context/ProtectedRoute";
+import Head from "next/head";
 function Profile() {
   const { currentUser } = useAuth();
   const [userDetails, setUserDetails] = useState();
@@ -43,6 +44,7 @@ function Profile() {
   }, []);
   return (
     <div>
+      <Head>Profile</Head>
       <div className="grid grid-cols-7 gap-6 content-evenly">
         <div className="p-6 flex col-span-2 justify-center items-center">
           <div className="w-4/5 shadow-lg rounded overflow-hidden">
@@ -115,7 +117,8 @@ function Profile() {
           <div className="text-center m-2">
             <strong className="text-2xl">Appointment details:</strong>
           </div>
-          {userDetails && userDetails.appointments &&
+          {userDetails &&
+            userDetails.appointments &&
             userDetails.appointments.map((app) => {
               return (
                 <div
@@ -148,7 +151,8 @@ function Profile() {
       <div className="flex flex-col my-7 mx-32">
         <div className="justfiy-center px-20 items-center shadow-lg bg-sky-50 rounded-lg overflow-hidden">
           <h2 className="text-center text-3xl mt-3">Medications</h2>
-          {userDetails && userDetails.medicine &&
+          {userDetails &&
+            userDetails.medicine &&
             userDetails.medicine.map((medicine) => {
               return (
                 <div

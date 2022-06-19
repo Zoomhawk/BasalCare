@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../../components/context/AuthContext";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function MedicalDetails(props) {
   const [medicalDetails, setMedicalDetails] = useState([]);
@@ -27,6 +28,7 @@ function MedicalDetails(props) {
   }, []);
   return (
     <div>
+      <Head>Medical Details</Head>
       <div>
         <div className="flex mx-24">
           <div className="w-1/4 m-4 bg-slate-100 p-4 mx-8 flex flex-col items-center justify-center h-32 drop-shadow-2xl rounded-lg shadow-gray-1000">
