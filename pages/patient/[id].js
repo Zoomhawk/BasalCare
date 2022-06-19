@@ -2,20 +2,32 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BasicDetails from "../../components/User/BasicDetails";
 import { useRouter } from "next/router";
+import { useAuth } from "../../components/context/AuthContext";
 
 function Patient(props) {
   const [userDetails, setUserDetails] = useState("");
   const [userTreatments, setUserTreatments] = useState("");
+  const [isHospital, setIsHospital] = useState(false);
+  const { currentUser } = useAuth();
   const router = useRouter();
+  const checkHospital = async () => {
+    if (currentUser) {
+      const response = await axios.post("/api/checkHospital", {
+        id: currentUser.email,
+      });
+      setIsHospital(response.data.user);
+    }
+  };
   useEffect(() => {
     if (props.data && props.data.userDetails[0]) {
       setUserDetails(props.data.userDetails[0]);
       setUserTreatments(props.treatmentDetails);
+      checkHospital();
     }
   }, []);
 
   return (
-    <div>
+    <div className="bg-gray-100">
       {userDetails ? (
         <div className="flex">
           <div className="w-1/4 border-solid mx-1 ">
@@ -30,47 +42,59 @@ function Patient(props) {
               emergencyContact={userDetails.emergencyContact}
             />
           </div>
-          <div className="grid w-3/4 border-solid gap-2">
-            <div className="grid grid-rows-3 gap-2">
-              <div className="row-span-3 col-span-2 border-solid overflow-y-auto h-128">
-                <div className="p-4 pl-8 text-[#023E8A] text-2xl">
-                  <strong>Previous Details:</strong>
-                </div>
-                {userTreatments
-                  ? userTreatments.map((treatment) => {
-                      return (
-                        <div
-                          className="flex flex-col flex-relative mx-6 my-4 bg-blue-100 p-6 rounded"
-                          key={treatment._id}
-                        >
-                          <strong>
-                            Hospital Name : {treatment.hospitalName}
-                          </strong>
-                          <strong>Location : {treatment.location}</strong>
-                          {treatment.problem}
-                          <div className="my-2 py-2">
-                            <button
-                              className="h-12 p-2 rounded-lg text-gray-800 w-48 border-2 bg-blue-300 hover:bg-blue-400 hover:text-gray-800"
-                              onClick={() =>
-                                router.push(
-                                  `/patient/medicalDetails/${treatment.treatmentId}`
-                                )
-                              }
-                            >
-                              Show Details
-                            </button>
+          {isHospital ? (
+            <div className="grid w-3/4 border-solid gap-2">
+              <div className="grid grid-rows-3 gap-2">
+                <div className="row-span-3 col-span-2 border-solid overflow-y-auto h-128">
+                  <div className="p-4 pl-8 text-[#023E8A] text-2xl">
+                    <strong>Previous Details:</strong>
+                  </div>
+                  {userTreatments
+                    ? userTreatments.map((treatment) => {
+                        return (
+                          <div
+                            className="flex flex-col flex-relative mx-6 my-4 bg-blue-100 p-6 rounded"
+                            key={treatment._id}
+                          >
+                            <strong>
+                              Hospital Name : {treatment.hospitalName}
+                            </strong>
+                            <strong>Location : {treatment.location}</strong>
+                            {treatment.problem}
+                            <div className="my-2 py-2">
+                              <button
+                                className="h-12 p-2 rounded-lg text-gray-800 w-48 border-2 bg-blue-300 hover:bg-blue-400 hover:text-gray-800"
+                                onClick={() =>
+                                  router.push(
+                                    `/patient/medicalDetails/${treatment.treatmentId}`
+                                  )
+                                }
+                              >
+                                Show Details
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })
-                  : ""}
+                        );
+                      })
+                    : ""}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex flex-col justify-center items-center ml-96">
+              <div className="mb-10 text-lg">
+                Login with Hospital Id to view full details
+              </div>
+              <img
+                src="https://png.pngtree.com/png-vector/20191024/ourlarge/pngtree-lock-line-icon-vector-png-image_1859174.jpg"
+                className="w-40"
+              ></img>
+            </div>
+          )}
         </div>
       ) : (
-        <div className="h-full w-full">
-          <img src="error_page.svg" />
+        <div className="h-screen text-4xl font-bold flex justify-center items-center">
+          Page Not Found
         </div>
       )}
     </div>

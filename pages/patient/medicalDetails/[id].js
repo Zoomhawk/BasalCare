@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuth } from "../../../components/context/AuthContext";
+import { useRouter } from "next/router";
 
 function MedicalDetails(props) {
   const [medicalDetails, setMedicalDetails] = useState([]);
+  const { currentUser } = useAuth();
+  const router = useRouter();
+  const checkHospital = async () => {
+    if (currentUser) {
+      const response = await axios.post("/api/checkHospital", {
+        id: currentUser.email,
+      });
+      if (!response.data.user) {
+        router.push("/");
+      }
+    }
+  };
   useEffect(() => {
     if (props.data && props.data.treatmentDetails.length) {
       setMedicalDetails(props.data.treatmentDetails[0]);
+      checkHospital();
     }
   }, []);
   return (

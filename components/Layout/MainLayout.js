@@ -4,11 +4,11 @@ import NavBar from "../NavBar";
 
 function MainLayout({ children }) {
   return (
-    <>
+    <div className="min-h-screen">
       <NavBar />
       {children}
       <Footer />
-    </>
+    </div>
   );
 }
 
