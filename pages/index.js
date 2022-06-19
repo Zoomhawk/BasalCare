@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-function index() {
+function Home() {
   const [id, setId] = useState();
   const router = useRouter();
 
@@ -72,4 +72,4 @@ function index() {
     </div>
   );
 }
-export default index;
+export default Home;

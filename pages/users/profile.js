@@ -118,7 +118,10 @@ function Profile() {
           {userDetails.appointments &&
             userDetails.appointments.map((app) => {
               return (
-                <div className="grid px-20 grid-cols-2 border-b-2 pb-3 text-lg ">
+                <div
+                  className="grid px-20 grid-cols-2 border-b-2 pb-3 text-lg"
+                  key={app.id}
+                >
                   <div>
                     <ul>
                       <li>Appointment id : </li>
@@ -148,7 +151,10 @@ function Profile() {
           {userDetails.medicine &&
             userDetails.medicine.map((medicine) => {
               return (
-                <div className="grid grid-cols-2 text-lg p-6 border-b-2">
+                <div
+                  className="grid grid-cols-2 text-lg p-6 border-b-2"
+                  key={medicine[0] + medicine[1] + medicine[2]}
+                >
                   <div>
                     <ul>
                       <li>Medication Name: </li>
