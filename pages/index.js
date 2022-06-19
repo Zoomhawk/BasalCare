@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import Head from "next/head";
 
 function Home() {
   const [id, setId] = useState();
