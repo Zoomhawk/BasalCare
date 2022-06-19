@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useAuth } from "./AuthContext";
 
+//Code snippet from https://www.youtube.com/watch?v=0mC--Pgle-o
 export function protectedRoute(Component) {
   return function ProtectedRoute(props) {
     const { currentUser } = useAuth();

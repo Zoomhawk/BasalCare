@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { auth, googleAuth } from "../../firebase.config";
 
+// Auth Context Snippet from https://www.youtube.com/watch?v=WJ8qEkmK0rE
 const AuthContext = React.createContext();
 
 export function useAuth() {

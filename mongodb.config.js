@@ -1,3 +1,5 @@
+
+// Code snippet cited from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 import { MongoClient } from "mongodb";
 
 const uri = process.env.NEXT_PUBLIC_MONGODB_URI;
