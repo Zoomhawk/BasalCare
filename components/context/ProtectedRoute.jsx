@@ -1,3 +1,5 @@
+// Code snippet from https://www.youtube.com/watch?v=0mC--Pgle-o
+
 import { useRouter } from "next/router";
 import { useAuth } from "./AuthContext";
 

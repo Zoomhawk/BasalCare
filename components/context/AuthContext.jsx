@@ -1,3 +1,4 @@
+// Code snippet from https://www.youtube.com/watch?v=QK24lEvRTI8
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { auth, googleAuth } from "../../firebase.config";
