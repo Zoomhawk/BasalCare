@@ -1,4 +1,4 @@
-# BasalCare
+# <a href="https://basal-care.vercel.app/"> BasalCare</a>
 ## What our website does?
 BasalCare is a website that solves the much bigger issues in society which are not yet addressed. BasalCare alongwith other things largely focuses on minimizing the death rate by providing a quick and easy way of getting medical background of the patient which in turn helps doctors to ensure that only perfect medication is provided. Hence, the patients too receive right and on-time treatment. They won't die anymore due to lack of knowledge of background medication. BasalCare provides each patient with an id and also a QR code. Registered and verified hospitals only can access the patient's details using scanning the QR code. Hence, quick registration and medication can be provided to patients without any form - filling delay or queue delay.
 Additionally, our website reminds you of your appointments and also reminds you of your medicine routine via email.
